@@ -1,99 +1,142 @@
-body {
+/* Reset */
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #fbe4f4, #ffe8f0);
-    min-height: 100vh;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #fff0f5, #ffe6f0);
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 100vh;
+    padding: 1rem;
   }
   
+  /* Fade-in animation */
+  .fade-in {
+    animation: fadeInUp 0.8s ease-in-out;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Form container */
   .contact-container {
-    background: white;
-    border-radius: 20px;
-    padding: 40px;
-    max-width: 500px;
-    width: 90%;
-    box-shadow: 0 8px 20px rgba(255, 192, 203, 0.3);
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.6s ease-in-out;
-  }
-  
-  .contact-container.fade-in {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  .logo {
-    display: block;
-    margin: 0 auto 20px;
-    height: 80px;
-  }
-  
-  .contact-title {
-    color: #d63384;
+    background: #fff;
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    max-width: 420px;
+    width: 100%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin-bottom: 25px;
-    font-size: 24px;
   }
   
-  .contact-form .input-group {
-    margin-bottom: 20px;
+  /* Logo */
+  .logo {
+    width: 295px;
+    margin-bottom: 1rem;
+  }
+  
+  /* Title */
+  .contact-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #d63384;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Input group */
+  .input-group {
+    margin-bottom: 1.2rem;
+    text-align: left;
   }
   
   .input-group label {
     display: block;
-    font-weight: bold;
-    margin-bottom: 6px;
-    color: #333;
+    margin-bottom: 0.4rem;
+    color: #d63384;
+    font-weight: 500;
+    font-size: 0.95rem;
   }
   
   .input-group input {
     width: 100%;
-    padding: 12px 15px;
-    border: 2px solid #ffc1d3;
+    padding: 0.75rem 1rem;
+    border: 2px solid #ffe6f0;
     border-radius: 10px;
-    outline: none;
-    transition: border-color 0.3s ease;
-    font-size: 16px;
+    font-size: 1rem;
+    transition: border 0.3s, box-shadow 0.3s;
   }
   
   .input-group input:focus {
-    border-color: #d63384;
-    box-shadow: 0 0 5px rgba(214, 51, 132, 0.3);
+    border-color: #ff69b4;
+    box-shadow: 0 0 6px rgba(255, 105, 180, 0.3);
+    outline: none;
   }
   
+  /* Submit button */
   .submit-button {
     width: 100%;
-    padding: 12px;
-    background-color: #d63384;
+    background: linear-gradient(90deg, #ff69b4, #ff85c1);
     color: white;
+    padding: 0.9rem;
+    font-size: 1.05rem;
+    font-weight: 600;
     border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: bold;
+    border-radius: 12px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: transform 0.3s, box-shadow 0.3s;
   }
   
   .submit-button:hover {
-    background-color: #c12573;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(255, 105, 180, 0.3);
   }
   
+  /* Message styles */
   .message {
-    margin-top: 20px;
-    text-align: center;
-    font-size: 16px;
-    font-weight: bold;
+    margin-top: 1rem;
+    padding: 0.9rem;
+    font-weight: 500;
+    border-radius: 10px;
+    animation: fadeIn 0.4s ease-in;
+    font-size: 0.95rem;
   }
   
-  .message.success {
-    color: #28a745;
+  .success {
+    background-color: #e6ffec;
+    color: #2e8b57;
   }
   
-  .message.error {
-    color: #dc3545;
+  .error {
+    background-color: #ffe2e2;
+    color: #cc0000;
+  }
+  
+  /* Media Queries for smaller phones */
+  @media (max-width: 360px) {
+    .contact-title {
+      font-size: 1.2rem;
+    }
+  
+    .submit-button {
+      font-size: 1rem;
+      padding: 0.75rem;
+    }
+  
+    .logo {
+      width: 60px;
+    }
   }
   
