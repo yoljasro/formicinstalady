@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './ContactForm.css'; // 👈 CSS fayl ulanadi
+import './ContactForm.css';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
+  const [showForm, setShowForm] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => setShowForm(true), 300);
+  }, []);
 
   const sendLead = async (e) => {
     e.preventDefault();
@@ -16,7 +21,7 @@ const ContactForm = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:4000/api/send-to-amocrm', {
+      const response = await axios.post('https://formic.saifproface.uz/api/send-to-amocrm', {
         name,
         phone,
       });
@@ -35,7 +40,8 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="contact-container">
+    <div className={`contact-container ${showForm ? 'fade-in' : ''}`}>
+      <img src="/img/logo2.png" alt="InstaLady Logo" className="logo" />
       <h1 className="contact-title">InstaLady Akademiyasiga Ma'lumotlaringizni yuboring!</h1>
       <form onSubmit={sendLead} className="contact-form">
         <div className="input-group">
