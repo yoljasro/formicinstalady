@@ -1,74 +1,76 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState } from 'react';
+import axios from 'axios';
+import './ContactForm.css'; // 👈 CSS fayl ulanadi
 
 const ContactForm = () => {
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [message, setMessage] = useState('');
 
-  const handleSubmit = async (e) => {
+  const sendLead = async (e) => {
     e.preventDefault();
 
+    if (!name || !phone) {
+      setMessage("Iltimos, barcha maydonlarni to'ldiring.");
+      return;
+    }
+
     try {
-      // 1. AmoCRM token (bu sizda allaqachon bo'lishi kerak)
-      const accessToken = "YOUR_ACCESS_TOKEN"; // bu yerga haqiqiy token yoziladi
+      const response = await axios.post('http://localhost:4000/api/send-to-amocrm', {
+        name,
+        phone,
+      });
 
-      // 2. Contact ma'lumotlarini yuborish
-      const response = await axios.post(
-        "https://YOUR_DOMAIN.amocrm.com/api/v4/contacts", // domeningizni yozing
-        [
-          {
-            name: name,
-            custom_fields_values: [
-              {
-                field_code: "PHONE",
-                values: [{ value: phone }]
-              }
-            ]
-          }
-        ],
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json"
-          }
-        }
-      );
-
-      console.log("✅ Contact added successfully:", response.data);
-      alert("Ma'lumot AmoCRMga yuborildi!");
-
-    } catch (error) {
-      console.error("❌ Xatolik:", error);
-      alert("Xatolik yuz berdi. Console ni tekshiring.");
+      if (response.data.success) {
+        setMessage("✅ Lead muvaffaqiyatli yuborildi.");
+        setName('');
+        setPhone('');
+      } else {
+        setMessage("❌ Noma'lum xatolik yuz berdi.");
+      }
+    } catch (err) {
+      console.error('❌ Lead yuborishda xatolik:', err.message);
+      setMessage('Xatolik yuz berdi: ' + err.message);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ width: "300px", margin: "0 auto" }}>
-      <h2>AmoCRM forma</h2>
+    <div className="contact-container">
+      <h1 className="contact-title">InstaLady Akademiyasiga Ma'lumotlaringizni yuboring!</h1>
+      <form onSubmit={sendLead} className="contact-form">
+        <div className="input-group">
+          <label htmlFor="name">Ism</label>
+          <input
+            id="name"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Ismingizni kiriting"
+          />
+        </div>
 
-      <label>Ismingiz:</label>
-      <input
-        type="text"
-        value={name}
-        required
-        onChange={(e) => setName(e.target.value)}
-        placeholder="Ism"
-      />
+        <div className="input-group">
+          <label htmlFor="phone">Telefon raqami</label>
+          <input
+            id="phone"
+            type="tel"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            placeholder="Telefon raqamingizni kiriting"
+          />
+        </div>
 
-      <label>Telefon raqam:</label>
-      <input
-        type="tel"
-        value={phone}
-        required
-        onChange={(e) => setPhone(e.target.value)}
-        placeholder="+998901234567"
-      />
+        <button type="submit" className="submit-button">
+          Lead yuborish
+        </button>
+      </form>
 
-      <button type="submit" style={{ marginTop: "10px" }}>
-        Yuborish
-      </button>
-    </form>
+      {message && (
+        <div className={`message ${message.includes('Xatolik') ? 'error' : 'success'}`}>
+          {message}
+        </div>
+      )}
+    </div>
   );
 };
 
