@@ -27,7 +27,7 @@ const ContactForm = () => {
       });
 
       if (response.data.success) {
-        setMessage("✅ Lead muvaffaqiyatli yuborildi.");
+        setMessage("✅ Ma'lumotlaringiz muvaffaqiyatli yuborildi.");
         setName('');
         setPhone('');
       } else {
