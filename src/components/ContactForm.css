@@ -7,7 +7,7 @@
   
   body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #fff0f5, #ffe6f0);
+    background: #CC1B55;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,39 +33,41 @@
   
   /* Form container */
   .contact-container {
-    background: #fff;
-    border-radius: 16px;
-    padding: 2rem 1.5rem;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 2.2rem 1.8rem;
     max-width: 420px;
     width: 100%;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); /* kuchliroq shadow */
     text-align: center;
+    border: 1.5px solid #f8d0e1;
   }
   
   /* Logo */
   .logo {
-    width: 295px;
+    width: 220px;
     margin-bottom: 1rem;
   }
   
   /* Title */
   .contact-title {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 600;
-    color: #d63384;
+    color: #CC1B55;
     margin-bottom: 1.5rem;
+    line-height: 1.4;
   }
   
   /* Input group */
   .input-group {
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.3rem;
     text-align: left;
   }
   
   .input-group label {
     display: block;
     margin-bottom: 0.4rem;
-    color: #d63384;
+    color: #CC1B55;
     font-weight: 500;
     font-size: 0.95rem;
   }
@@ -73,70 +75,92 @@
   .input-group input {
     width: 100%;
     padding: 0.75rem 1rem;
-    border: 2px solid #ffe6f0;
-    border-radius: 10px;
+    border: 1.5px solid #f3bfd4;
+    border-radius: 12px;
     font-size: 1rem;
     transition: border 0.3s, box-shadow 0.3s;
+    background-color: #fff9fc;
   }
   
   .input-group input:focus {
-    border-color: #ff69b4;
-    box-shadow: 0 0 6px rgba(255, 105, 180, 0.3);
+    border-color:#CC1B55;
+    box-shadow: 0 0 8px rgba(214, 51, 132, 0.25);
     outline: none;
   }
   
   /* Submit button */
   .submit-button {
     width: 100%;
-    background: linear-gradient(90deg, #ff69b4, #ff85c1);
+    background: #CC1B55;
     color: white;
-    padding: 0.9rem;
+    padding: 0.95rem;
     font-size: 1.05rem;
     font-weight: 600;
     border: none;
-    border-radius: 12px;
+    border-radius: 14px;
     cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.25s, box-shadow 0.3s;
+    box-shadow: 0 5px 12px rgba(204, 27, 85, 0.4); /* default holatda ham shadow */
   }
   
   .submit-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 18px rgba(255, 105, 180, 0.3);
+    box-shadow: 0 12px 24px rgba(204, 27, 85, 0.45); /* hover holatida kuchliroq shadow */
   }
-  
   /* Message styles */
   .message {
-    margin-top: 1rem;
-    padding: 0.9rem;
+    margin-top: 1.2rem;
+    padding: 1rem;
     font-weight: 500;
-    border-radius: 10px;
+    border-radius: 12px;
     animation: fadeIn 0.4s ease-in;
     font-size: 0.95rem;
   }
   
   .success {
-    background-color: #e6ffec;
-    color: #2e8b57;
+    background-color: #e8fff1;
+    color: #207e4d;
+    border: 1px solid #c6f0da;
   }
   
   .error {
-    background-color: #ffe2e2;
-    color: #cc0000;
+    background-color: #fff0f0;
+    color: #d61f1f;
+    border: 1px solid #f5baba;
   }
   
-  /* Media Queries for smaller phones */
-  @media (max-width: 360px) {
+  /* Mobile responsiveness */
+  @media (max-width: 480px) {
+    .contact-container {
+      padding: 1.5rem 1rem;
+      border-radius: 16px;
+    }
+  
     .contact-title {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
     }
   
     .submit-button {
       font-size: 1rem;
-      padding: 0.75rem;
+      padding: 0.8rem;
     }
   
     .logo {
-      width: 60px;
+      width: 180px;
+    }
+  }
+  
+  @media (max-width: 360px) {
+    .contact-title {
+      font-size: 1.15rem;
+    }
+  
+    .logo {
+      width: 150px;
+    }
+  
+    .submit-button {
+      padding: 0.7rem;
     }
   }
   

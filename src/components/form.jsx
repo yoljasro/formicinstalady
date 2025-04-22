@@ -71,7 +71,7 @@ const ContactForm = () => {
         </div>
 
         <button type="submit" className="submit-button">
-          Lead yuborish
+           Yuborish
         </button>
       </form>
 
