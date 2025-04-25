@@ -7,6 +7,7 @@ const ContactForm = () => {
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
   const [showForm, setShowForm] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     setTimeout(() => setShowForm(true), 300);
@@ -19,6 +20,8 @@ const ContactForm = () => {
       setMessage("Iltimos, barcha maydonlarni to'ldiring.");
       return;
     }
+
+    setIsSubmitting(true); // Tugmani disable qilamiz
 
     try {
       const response = await axios.post('https://formic.saifproface.uz/api/send-to-amocrm', {
@@ -37,7 +40,10 @@ const ContactForm = () => {
       console.error('❌ Lead yuborishda xatolik:', err.message);
       setMessage('Xatolik yuz berdi: ' + err.message);
     }
+
+    setIsSubmitting(false); // Tugmani qayta faollashtiramiz
   };
+
 
   return (
     <div className={`contact-container ${showForm ? 'fade-in' : ''}`}>
@@ -70,8 +76,8 @@ const ContactForm = () => {
           />
         </div>
 
-        <button type="submit" className="submit-button">
-           Yuborish
+        <button type="submit" className="submit-button" disabled={isSubmitting}>
+          {isSubmitting ? 'Yuborilmoqda...' : 'Yuborish'}
         </button>
       </form>
 
